@@ -4,7 +4,8 @@
 
 <script>
     export default {
-        name: "NewsList"
+        name: "NewsList",
+      props: ["top"]
     }
 </script>
 

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <toolbar></toolbar>
-    <news-header></news-header>
-    <news-list></news-list>
+    <news-header :topten="childtopten"></news-header>
+    <news-list :top="childtophun"></news-list>
   </div>
 </template>
 
@@ -12,8 +12,8 @@ import NewsList from './components/NewsList'
 import Toolbar from './components/ToolBar'
 import axios from 'axios'
 import cleanstr from './additional_js/cleanstring'
-let clientId = "Wzni9HxwGgrYu4oYY1Sh";
-let clientSecret = "5VCrzJbZOd";
+let clientId = "clientid";
+let clientSecret = "clientsecret";
 export default {
   name: 'App',
   components: {
@@ -25,7 +25,11 @@ export default {
       description: [],
       link: [],
       date: [],
-      keyword: "안철수"
+      keyword: "안철수",
+      childtophun: [],
+      childtopten: [],
+      arr1: [],
+      arr2: []
     }
   },
   mounted() {
@@ -46,12 +50,39 @@ export default {
           "X-Naver-Client-Secret": clientSecret
         }
       }).then((result) => {
+        console.log(result);
         for(let i in result.data.items){
-          this.list.push(cleanstr(result.data.items[i].title));
-          this.description.push(cleanstr(result.data.items[i].description));
-          this.date.push(cleanstr(result.data.items[i].pubDate));
-          this.link.push(result.data.items[i].originallink);
+          let title = cleanstr(result.data.items[i].title, "title");
+          let description = cleanstr(result.data.items[i].description, "description");
+          let date = cleanstr(result.data.items[i].pubDate, "date");
+          let link = result.data.items[i].originallink;
+          let temp = { title: title, description: description, date: date, link: link };
+          if(i < 10){
+            if(i<5){
+              this.list.push(title);
+              this.description.push(description);
+              this.date.push(date);
+              this.link.push(link);
+              this.arr1.push(temp);
+            }
+            else{
+              this.list.push(title);
+              this.description.push(description);
+              this.date.push(date);
+              this.link.push(link);
+              this.arr2.push(temp);
+            }
+          }
+          else{
+            this.list.push(title);
+            this.description.push(description);
+            this.date.push(date);
+            this.link.push(link);
+          }
+          this.childtophun.push(temp);
         }
+        this.childtopten.push(this.arr1);
+        this.childtopten.push(this.arr2);
       })
     }
   }
@@ -59,5 +90,8 @@ export default {
 </script>
 
 <style>
-
+  #app {
+    width: 900px;
+    margin: 10px auto;
+  }
 </style>
