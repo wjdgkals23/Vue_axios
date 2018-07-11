@@ -1,9 +1,9 @@
 <template>
   <v-layout row wrap align-center>
     <v-flex v-for="lists in topten" style="padding-left: 4px">
-      <v-card width="172px" height="295px" color="blue-grey darken-2" class="white--text">
-        <v-card-media height="200px" src="../assets/logo.png"></v-card-media>
-        <v-card-text>{{lists.title}}</v-card-text>
+      <v-card width="172px" height="275px" color="blue darken-2" style="border-radius: 4px" flat>
+        <img src="../assets/small.png" alt="" style="padding-left: 6px">
+        <a :href="lists.link" style="text-decoration: none" class="white--text"><v-card-text>{{lists.title}}</v-card-text></a>
       </v-card>
     </v-flex>
   </v-layout>

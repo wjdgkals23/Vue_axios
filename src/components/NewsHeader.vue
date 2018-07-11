@@ -25,6 +25,6 @@
 
 <style scoped>
   .carousel {
-    height: 300px !important;
+    height: 280px !important;
   }
 </style>

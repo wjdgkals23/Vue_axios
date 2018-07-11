@@ -2,7 +2,7 @@
   <div id="app">
     <toolbar></toolbar>
     <news-header :topten="childtopten"></news-header>
-    <news-list :top="childtophun"></news-list>
+    <news-list :top="childtophun" style="box-shadow: 3px 3px 3px 3px grey"></news-list>
   </div>
 </template>
 
@@ -12,8 +12,10 @@ import NewsList from './components/NewsList'
 import Toolbar from './components/ToolBar'
 import axios from 'axios'
 import cleanstr from './additional_js/cleanstring'
-let clientId = "clientid";
-let clientSecret = "clientsecret";
+let clientId = "Wzni9HxwGgrYu4oYY1Sh";
+// let clientId = "clientid";
+let clientSecret = "5VCrzJbZOd";
+// let clientSecret = "clientsecret";
 export default {
   name: 'App',
   components: {
