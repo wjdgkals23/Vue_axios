@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <toolbar></toolbar>
+  <div id="app" v-cloak>
+    <toolbar v-on:changekeyword="research"></toolbar>
     <news-header :topten="childtopten"></news-header>
     <news-list :top="childtophun" style="box-shadow: 3px 3px 3px 3px grey"></news-list>
   </div>
@@ -27,7 +27,7 @@ export default {
       description: [],
       link: [],
       date: [],
-      keyword: "안철수",
+      keyword: "세금",
       childtophun: [],
       childtopten: [],
       arr1: [],
@@ -38,7 +38,20 @@ export default {
     this.search();
   },
   methods: {
+    research: function(value) {
+      console.log("change");
+      this.keyword =  value;
+      this.childtopten = [];
+      this.childtophun = [];
+      this.search();
+    },
     search: function() {
+      this.list = [];
+      this.link = [];
+      this.description = [];
+      this.date = [];
+      this.arr1 = [];
+      this.arr2 = [];
       axios({
         method: "get",
         url: "/naversearch",
@@ -92,6 +105,7 @@ export default {
 </script>
 
 <style>
+  [v-cloak] { display:none }
   #app {
     width: 900px;
     margin: 10px auto;

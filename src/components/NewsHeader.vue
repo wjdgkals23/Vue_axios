@@ -1,6 +1,6 @@
 <template>
   <v-carousel class="carousel" hide-delimiters="">
-    <v-carousel-item v-for="list in temp">
+    <v-carousel-item v-for="list in topten">
       <news-flex v-bind:topten="list"></news-flex>
     </v-carousel-item>
   </v-carousel>
@@ -14,12 +14,8 @@
       props: [ "topten" ],
       data() {
           return {
-            temp: ""
           }
       },
-      mounted() {
-          this.temp = this.topten;
-      }
     }
 </script>
 
