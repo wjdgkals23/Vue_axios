@@ -1,6 +1,7 @@
 <template>
   <div id="app" v-cloak>
     <toolbar v-on:changekeyword="research"></toolbar>
+    <my-dialog></my-dialog>
     <news-header :topten="childtopten"></news-header>
     <news-list :top="childtophun" style="box-shadow: 3px 3px 3px 3px grey"></news-list>
   </div>
@@ -10,6 +11,8 @@
 import NewsHeader from './components/NewsHeader'
 import NewsList from './components/NewsList'
 import Toolbar from './components/ToolBar'
+import MyDialog from './components/MyDialog'
+
 import axios from 'axios'
 import cleanstr from './additional_js/cleanstring'
 let clientId = "Wzni9HxwGgrYu4oYY1Sh";
@@ -19,7 +22,7 @@ let clientSecret = "5VCrzJbZOd";
 export default {
   name: 'App',
   components: {
-    NewsHeader, NewsList, Toolbar
+    NewsHeader, NewsList, Toolbar, MyDialog
   },
   data() {
     return {

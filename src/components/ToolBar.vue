@@ -15,7 +15,9 @@
 </template>
 
 <script>
-    export default {
+  import {EventBus} from "../main";
+
+  export default {
         name: "ToolBar",
       data() {
           return {
@@ -24,9 +26,14 @@
       },
       methods: {
           passkeyword: function() {
-            console.log("test");
-            this.$emit('changekeyword', this.keyword);
-            this.keyword = ""
+            if(this.keyword.length <  2){
+              EventBus.$emit("errordialog", "check");
+            }
+            else{
+              console.log("test");
+              this.$emit('changekeyword', this.keyword);
+              this.keyword = ""
+            }
           }
       }
     }
